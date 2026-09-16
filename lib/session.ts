@@ -7,7 +7,12 @@ const COOKIE = "bk_session";
 const MAX_AGE = 60 * 60 * 24 * 14;
 
 function secret() {
-  return process.env.SESSION_SECRET || "bk-bolvaerket-intranet-lokal-noegle";
+  const value = process.env.SESSION_SECRET;
+  if (value) return value;
+  if (process.env.NODE_ENV === "production") {
+    throw new Error("SESSION_SECRET skal sættes i produktion.");
+  }
+  return "bk-bolvaerket-intranet-lokal-noegle";
 }
 
 function sign(payload: string) {

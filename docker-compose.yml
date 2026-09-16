@@ -1,0 +1,9 @@
+services:
+  intranet:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      PORT: "8080"
+      SESSION_SECRET: local-docker-session-secret-skift-mig
+    restart: unless-stopped
