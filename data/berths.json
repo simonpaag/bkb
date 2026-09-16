@@ -1,0 +1,362 @@
+[
+  {
+    "id": "plads-02",
+    "number": 2,
+    "side": "norden",
+    "x": 4.2,
+    "y": 42.8,
+    "memberId": "m-045"
+  },
+  {
+    "id": "plads-04",
+    "number": 4,
+    "side": "norden",
+    "x": 7.95,
+    "y": 42.8,
+    "memberId": "m-046"
+  },
+  {
+    "id": "plads-06",
+    "number": 6,
+    "side": "norden",
+    "x": 11.71,
+    "y": 42.8,
+    "memberId": "m-071"
+  },
+  {
+    "id": "plads-08",
+    "number": 8,
+    "side": "norden",
+    "x": 15.46,
+    "y": 42.8,
+    "memberId": "m-058"
+  },
+  {
+    "id": "plads-09",
+    "number": 9,
+    "side": "norden",
+    "x": 19.22,
+    "y": 42.8,
+    "memberId": "m-011"
+  },
+  {
+    "id": "plads-10",
+    "number": 10,
+    "side": "norden",
+    "x": 22.97,
+    "y": 42.8,
+    "memberId": "m-069"
+  },
+  {
+    "id": "plads-11",
+    "number": 11,
+    "side": "norden",
+    "x": 26.72,
+    "y": 42.8,
+    "memberId": "m-042"
+  },
+  {
+    "id": "plads-12",
+    "number": 12,
+    "side": "norden",
+    "x": 30.48,
+    "y": 42.8,
+    "memberId": "m-069"
+  },
+  {
+    "id": "plads-16",
+    "number": 16,
+    "side": "norden",
+    "x": 34.23,
+    "y": 42.8,
+    "memberId": "m-032"
+  },
+  {
+    "id": "plads-22",
+    "number": 22,
+    "side": "norden",
+    "x": 37.98,
+    "y": 42.8,
+    "memberId": "m-063"
+  },
+  {
+    "id": "plads-23",
+    "number": 23,
+    "side": "norden",
+    "x": 41.74,
+    "y": 42.8,
+    "memberId": "m-062"
+  },
+  {
+    "id": "plads-24",
+    "number": 24,
+    "side": "norden",
+    "x": 45.49,
+    "y": 42.8,
+    "memberId": "m-046"
+  },
+  {
+    "id": "plads-26",
+    "number": 26,
+    "side": "norden",
+    "x": 49.25,
+    "y": 42.8,
+    "memberId": "m-057"
+  },
+  {
+    "id": "plads-30",
+    "number": 30,
+    "side": "norden",
+    "x": 53.0,
+    "y": 42.8,
+    "memberId": "m-040"
+  },
+  {
+    "id": "plads-33",
+    "number": 33,
+    "side": "norden",
+    "x": 66.5,
+    "y": 42.8,
+    "memberId": "m-070"
+  },
+  {
+    "id": "plads-34",
+    "number": 34,
+    "side": "norden",
+    "x": 70.12,
+    "y": 42.8,
+    "memberId": "m-049"
+  },
+  {
+    "id": "plads-39",
+    "number": 39,
+    "side": "norden",
+    "x": 73.75,
+    "y": 42.8,
+    "memberId": "m-060"
+  },
+  {
+    "id": "plads-43",
+    "number": 43,
+    "side": "norden",
+    "x": 77.38,
+    "y": 42.8,
+    "memberId": "m-067"
+  },
+  {
+    "id": "plads-46",
+    "number": 46,
+    "side": "norden",
+    "x": 81.0,
+    "y": 42.8,
+    "memberId": "m-039"
+  },
+  {
+    "id": "plads-51",
+    "number": 51,
+    "side": "norden",
+    "x": 84.62,
+    "y": 42.8,
+    "memberId": "m-064"
+  },
+  {
+    "id": "plads-54",
+    "number": 54,
+    "side": "norden",
+    "x": 88.25,
+    "y": 42.8,
+    "memberId": "m-066"
+  },
+  {
+    "id": "plads-56",
+    "number": 56,
+    "side": "norden",
+    "x": 91.88,
+    "y": 42.8,
+    "memberId": "m-058"
+  },
+  {
+    "id": "plads-57",
+    "number": 57,
+    "side": "norden",
+    "x": 95.5,
+    "y": 42.8,
+    "memberId": "m-041"
+  },
+  {
+    "id": "plads-59",
+    "number": 59,
+    "side": "sonden",
+    "x": 5.0,
+    "y": 56.6,
+    "memberId": "m-068"
+  },
+  {
+    "id": "plads-61",
+    "number": 61,
+    "side": "sonden",
+    "x": 8.71,
+    "y": 56.6,
+    "memberId": "m-062"
+  },
+  {
+    "id": "plads-62",
+    "number": 62,
+    "side": "sonden",
+    "x": 12.42,
+    "y": 56.6,
+    "memberId": "m-054"
+  },
+  {
+    "id": "plads-63",
+    "number": 63,
+    "side": "sonden",
+    "x": 16.12,
+    "y": 56.6,
+    "memberId": "m-061"
+  },
+  {
+    "id": "plads-68",
+    "number": 68,
+    "side": "sonden",
+    "x": 19.83,
+    "y": 56.6,
+    "memberId": "m-058"
+  },
+  {
+    "id": "plads-69",
+    "number": 69,
+    "side": "sonden",
+    "x": 23.54,
+    "y": 56.6,
+    "memberId": "m-064"
+  },
+  {
+    "id": "plads-70",
+    "number": 70,
+    "side": "sonden",
+    "x": 27.25,
+    "y": 56.6,
+    "memberId": "m-060"
+  },
+  {
+    "id": "plads-71",
+    "number": 71,
+    "side": "sonden",
+    "x": 30.95,
+    "y": 56.6,
+    "memberId": "m-053"
+  },
+  {
+    "id": "plads-72",
+    "number": 72,
+    "side": "sonden",
+    "x": 34.66,
+    "y": 56.6,
+    "memberId": "m-029"
+  },
+  {
+    "id": "plads-73",
+    "number": 73,
+    "side": "sonden",
+    "x": 38.37,
+    "y": 56.6,
+    "memberId": "m-060"
+  },
+  {
+    "id": "plads-74",
+    "number": 74,
+    "side": "sonden",
+    "x": 42.08,
+    "y": 56.6,
+    "memberId": "m-041"
+  },
+  {
+    "id": "plads-75",
+    "number": 75,
+    "side": "sonden",
+    "x": 45.78,
+    "y": 56.6,
+    "memberId": "m-060"
+  },
+  {
+    "id": "plads-76",
+    "number": 76,
+    "side": "sonden",
+    "x": 49.49,
+    "y": 56.6,
+    "memberId": "m-033"
+  },
+  {
+    "id": "plads-77",
+    "number": 77,
+    "side": "sonden",
+    "x": 53.2,
+    "y": 56.6,
+    "memberId": "m-065"
+  },
+  {
+    "id": "plads-78",
+    "number": 78,
+    "side": "sonden",
+    "x": 66.8,
+    "y": 56.6,
+    "memberId": "m-030"
+  },
+  {
+    "id": "plads-79",
+    "number": 79,
+    "side": "sonden",
+    "x": 70.86,
+    "y": 56.6,
+    "memberId": "m-048"
+  },
+  {
+    "id": "plads-81",
+    "number": 81,
+    "side": "sonden",
+    "x": 74.91,
+    "y": 56.6,
+    "memberId": "m-045"
+  },
+  {
+    "id": "plads-82",
+    "number": 82,
+    "side": "sonden",
+    "x": 78.97,
+    "y": 56.6,
+    "memberId": "m-059"
+  },
+  {
+    "id": "plads-83",
+    "number": 83,
+    "side": "sonden",
+    "x": 83.03,
+    "y": 56.6,
+    "memberId": "m-067"
+  },
+  {
+    "id": "plads-84",
+    "number": 84,
+    "side": "sonden",
+    "x": 87.09,
+    "y": 56.6,
+    "memberId": "m-050"
+  },
+  {
+    "id": "plads-85",
+    "number": 85,
+    "side": "sonden",
+    "x": 91.14,
+    "y": 56.6,
+    "memberId": "m-051"
+  },
+  {
+    "id": "plads-86",
+    "number": 86,
+    "side": "sonden",
+    "x": 95.2,
+    "y": 56.6,
+    "memberId": "m-040"
+  }
+]

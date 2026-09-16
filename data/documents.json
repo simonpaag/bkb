@@ -1,0 +1,20 @@
+[
+  {
+    "id": "d1",
+    "title": "Vedtægter for B/K Bolværket",
+    "category": "vedtaegter",
+    "filename": "vedtaegter.txt",
+    "path": "/uploads/documents/vedtaegter.txt",
+    "uploadedBy": "Martin Rask",
+    "uploadedAt": "2025-04-18T12:00:00.000Z"
+  },
+  {
+    "id": "d2",
+    "title": "Referat, bestyrelsesmøde marts 2026",
+    "category": "referater",
+    "filename": "referat-marts-2026.txt",
+    "path": "/uploads/documents/referat-marts-2026.txt",
+    "uploadedBy": "Jonas Skovgaard-Hansen",
+    "uploadedAt": "2026-03-12T18:30:00.000Z"
+  }
+]

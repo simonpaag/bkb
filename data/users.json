@@ -1,0 +1,42 @@
+[
+  {
+    "id": "u-formand",
+    "name": "Martin Rask",
+    "email": "formand@bkbolvaerket.dk",
+    "passwordHash": "44b6c65edf4723441fd8f0dad52b3d31:fbfaa3a45cd9f28463a50f09766a6f8b200d70a52394f049a743e7078bc1da8e1bc30141642c54d2ca92ff7d3c4f24d1080ff6f6449ef16cbbbd65537d50c209",
+    "role": "formand",
+    "createdAt": "2024-04-12T10:00:00.000Z"
+  },
+  {
+    "id": "u-naestformand",
+    "name": "Jonas Skovgaard-Hansen",
+    "email": "jonas.skovgaard.hansen@gmail.com",
+    "passwordHash": "44b6c65edf4723441fd8f0dad52b3d31:fbfaa3a45cd9f28463a50f09766a6f8b200d70a52394f049a743e7078bc1da8e1bc30141642c54d2ca92ff7d3c4f24d1080ff6f6449ef16cbbbd65537d50c209",
+    "role": "naestformand",
+    "createdAt": "2024-04-12T10:00:00.000Z"
+  },
+  {
+    "id": "u-kasserer",
+    "name": "Jarl Christian Axel Hansen",
+    "email": "jarl@jarlaxel.com",
+    "passwordHash": "44b6c65edf4723441fd8f0dad52b3d31:fbfaa3a45cd9f28463a50f09766a6f8b200d70a52394f049a743e7078bc1da8e1bc30141642c54d2ca92ff7d3c4f24d1080ff6f6449ef16cbbbd65537d50c209",
+    "role": "kasserer",
+    "createdAt": "2024-05-02T10:00:00.000Z"
+  },
+  {
+    "id": "u-medlem-amina",
+    "name": "Amina Charai",
+    "email": "aminacharai@gmail.com",
+    "passwordHash": "44b6c65edf4723441fd8f0dad52b3d31:fbfaa3a45cd9f28463a50f09766a6f8b200d70a52394f049a743e7078bc1da8e1bc30141642c54d2ca92ff7d3c4f24d1080ff6f6449ef16cbbbd65537d50c209",
+    "role": "bestyrelsesmedlem",
+    "createdAt": "2025-04-20T10:00:00.000Z"
+  },
+  {
+    "id": "u-medlem-simon",
+    "name": "Simon Paag",
+    "email": "simon@paag.dk",
+    "passwordHash": "44b6c65edf4723441fd8f0dad52b3d31:fbfaa3a45cd9f28463a50f09766a6f8b200d70a52394f049a743e7078bc1da8e1bc30141642c54d2ca92ff7d3c4f24d1080ff6f6449ef16cbbbd65537d50c209",
+    "role": "bestyrelsesmedlem",
+    "createdAt": "2025-04-20T10:00:00.000Z"
+  }
+]
