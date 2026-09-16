@@ -25,7 +25,7 @@ export function DocumentArchive({
   user: SessionUser;
 }) {
   const router = useRouter();
-  const admin = isAdmin(user.role);
+  const admin = isAdmin(user);
   const [category, setCategory] = useState<DocumentCategory | "alle">("alle");
   const [error, setError] = useState("");
   const [pending, setPending] = useState(false);

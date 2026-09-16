@@ -7,12 +7,21 @@ type Params = { params: Promise<{ id: string }> };
 
 export async function PATCH(request: Request, { params }: Params) {
   const session = await getSession();
-  if (!session || !isAdmin(session.role)) {
-    return NextResponse.json({ error: "Ingen adgang." }, { status: 403 });
+  if (!session) {
+    return NextResponse.json({ error: "Ikke logget ind." }, { status: 401 });
   }
 
   const { id } = await params;
   const body = await request.json().catch(() => ({}));
+  const wantsAdminFields =
+    body.memberId !== undefined ||
+    typeof body.number === "number" ||
+    body.side === "norden" ||
+    body.side === "sonden";
+  if (wantsAdminFields && !isAdmin(session)) {
+    return NextResponse.json({ error: "Ingen adgang." }, { status: 403 });
+  }
+
   const berths = await getBerths();
   const berth = berths.find((b) => b.id === id);
   if (!berth) {
@@ -47,7 +56,7 @@ export async function PATCH(request: Request, { params }: Params) {
 
 export async function DELETE(_request: Request, { params }: Params) {
   const session = await getSession();
-  if (!session || !isAdmin(session.role)) {
+  if (!session || !isAdmin(session)) {
     return NextResponse.json({ error: "Ingen adgang." }, { status: 403 });
   }
   const { id } = await params;

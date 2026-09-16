@@ -13,16 +13,10 @@ export default async function KanalenPage() {
     <div>
       <h1 className="font-serif text-4xl text-navy">Kanalen</h1>
       <p className="mt-2 mb-6 max-w-3xl text-muted">
-        Det originale satellitkort er drejet, så Christianshavns Kanal ligger
-        helt vandret. Numrene på kortet er klubbens officielle pladsnumre fra
-        maillisten. De er fordelt langs kanalen som et første udkast — formand
-        og næstformand kan trække dem hen på de rigtige både.
+        Kanalen er delt i to: Bolværket og strækningen bag Torvegade. Numrene
+        er klubbens officielle pladsnumre. Alle i bestyrelsen kan trække dem
+        hen på de rigtige både.
       </p>
-      <img
-        src="/maps/kanalen-foto.png"
-        alt="Både langs bolværket i Christianshavns Kanal"
-        className="mb-8 h-44 w-full rounded-2xl object-cover sm:h-56"
-      />
       <CanalMap berths={sorted} members={members} user={user} />
     </div>
   );

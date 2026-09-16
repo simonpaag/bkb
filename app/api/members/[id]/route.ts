@@ -37,7 +37,7 @@ export async function GET(_request: Request, { params }: Params) {
 
 export async function PATCH(request: Request, { params }: Params) {
   const session = await getSession();
-  if (!session || !isAdmin(session.role)) {
+  if (!session || !isAdmin(session)) {
     return NextResponse.json({ error: "Ingen adgang." }, { status: 403 });
   }
 
@@ -97,7 +97,7 @@ export async function PATCH(request: Request, { params }: Params) {
 
 export async function DELETE(_request: Request, { params }: Params) {
   const session = await getSession();
-  if (!session || !isAdmin(session.role)) {
+  if (!session || !isAdmin(session)) {
     return NextResponse.json({ error: "Ingen adgang." }, { status: 403 });
   }
   const { id } = await params;

@@ -397,7 +397,7 @@
     "boatName": "",
     "boatLengthMeters": null,
     "membershipType": "baadplads",
-    "berthId": "plads-69",
+    "berthId": null,
     "photoPath": null,
     "notes": "",
     "createdAt": "2026-09-16T00:00:00.000Z"
@@ -732,11 +732,11 @@
     "name": "Simon Paag",
     "email": "simon@paag.dk",
     "phone": "",
-    "boatName": "",
+    "boatName": "Sofie Lassen-Kahlke",
     "boatLengthMeters": null,
     "membershipType": "baadplads",
-    "berthId": null,
-    "photoPath": null,
+    "berthId": "plads-69",
+    "photoPath": "/uploads/boats/sofie-lassen-kahlke.jpg",
     "notes": "",
     "createdAt": "2026-09-16T00:00:00.000Z"
   },

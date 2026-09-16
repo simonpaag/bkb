@@ -14,7 +14,7 @@ export async function GET() {
 
 export async function POST(request: Request) {
   const session = await getSession();
-  if (!session || !isAdmin(session.role)) {
+  if (!session || !isAdmin(session)) {
     return NextResponse.json({ error: "Kun formand og næstformand kan oprette medlemmer." }, { status: 403 });
   }
 

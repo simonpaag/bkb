@@ -77,6 +77,7 @@ export async function getSession(): Promise<SessionUser | null> {
     name: user.name,
     email: user.email,
     role: user.role,
+    admin: user.admin,
   };
 }
 

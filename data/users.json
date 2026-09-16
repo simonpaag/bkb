@@ -35,8 +35,9 @@
     "id": "u-medlem-simon",
     "name": "Simon Paag",
     "email": "simon@paag.dk",
-    "passwordHash": "44b6c65edf4723441fd8f0dad52b3d31:fbfaa3a45cd9f28463a50f09766a6f8b200d70a52394f049a743e7078bc1da8e1bc30141642c54d2ca92ff7d3c4f24d1080ff6f6449ef16cbbbd65537d50c209",
+    "passwordHash": "2c2e1437b68bf51a03dcb598134ece39:e7b8b5e4f3fd4396b0f2f98510438fa7999680643147774ece6552f6e7da14cc92c0046c85c6429fae1084988d1d87b28d897432c42751fc36d6a205cf5fd39b",
     "role": "bestyrelsesmedlem",
+    "admin": true,
     "createdAt": "2025-04-20T10:00:00.000Z"
   }
 ]

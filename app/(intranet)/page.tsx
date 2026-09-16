@@ -60,7 +60,7 @@ export default async function OversigtPage() {
         >
           <div className="relative h-64">
             <img
-              src="/maps/kanal-horizontal.jpg"
+              src="/maps/kanalen-foto.png"
               alt="Kanalen, vandret"
               className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
             />
@@ -142,10 +142,9 @@ export default async function OversigtPage() {
         </div>
       </section>
 
-      {isAdmin(user.role) ? (
+      {isAdmin(user) ? (
         <p className="mt-10 text-sm text-muted">
-          Du er logget ind som {user.role === "formand" ? "formand" : "næstformand"}
-          {" "}og kan tilføje og slette brugere under{" "}
+          Du har admin-adgang og kan tilføje og slette brugere under{" "}
           <Link href="/bestyrelsen" className="text-canal hover:underline">
             Bestyrelsen
           </Link>

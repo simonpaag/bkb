@@ -18,7 +18,7 @@ export function MemberDirectory({
   user: SessionUser;
 }) {
   const router = useRouter();
-  const admin = isAdmin(user.role);
+  const admin = isAdmin(user);
   const [q, setQ] = useState("");
   const [type, setType] = useState<MembershipType | "alle">("alle");
   const [showForm, setShowForm] = useState(false);

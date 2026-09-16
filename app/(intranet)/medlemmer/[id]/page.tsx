@@ -75,7 +75,7 @@ export default async function MedlemPage({
         </div>
       </div>
 
-      {isAdmin(user.role) ? (
+      {isAdmin(user) ? (
         <section className="paper-card mt-8 rounded-2xl p-6">
           <h2 className="font-serif mb-4 text-2xl text-navy">Redigér</h2>
           <MemberForm member={member} berths={berths} />

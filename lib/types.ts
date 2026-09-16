@@ -24,6 +24,7 @@ export interface User {
   email: string;
   passwordHash: string;
   role: BoardRole;
+  admin?: boolean;
   createdAt: string;
 }
 
@@ -65,8 +66,9 @@ export interface SessionUser {
   name: string;
   email: string;
   role: BoardRole;
+  admin?: boolean;
 }
 
-export function isAdmin(role: BoardRole) {
-  return role === "formand" || role === "naestformand";
+export function isAdmin(user: { role: BoardRole; admin?: boolean }) {
+  return user.role === "formand" || user.role === "naestformand" || Boolean(user.admin);
 }

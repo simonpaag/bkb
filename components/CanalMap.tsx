@@ -12,14 +12,48 @@ type Props = {
   user: SessionUser;
 };
 
+type Pane = {
+  id: string;
+  title: string;
+  x0: number;
+  x1: number;
+  src: string;
+};
+
+const PANES: Pane[] = [
+  {
+    id: "bolvaerket",
+    title: "Bolværket",
+    x0: 0,
+    x1: 60,
+    src: "/maps/kanal-bolvaerket.jpg?v=4",
+  },
+  {
+    id: "torvegade",
+    title: "Bag Torvegade",
+    x0: 60,
+    x1: 100,
+    src: "/maps/kanal-torvegade.jpg?v=4",
+  },
+];
+
+function inPane(berth: Berth, pane: Pane) {
+  return pane.x1 >= 100 ? berth.x >= pane.x0 : berth.x >= pane.x0 && berth.x < pane.x1;
+}
+
+function toLocalX(x: number, pane: Pane) {
+  return ((x - pane.x0) / (pane.x1 - pane.x0)) * 100;
+}
+
 export function CanalMap({ berths, members, user }: Props) {
   const router = useRouter();
-  const admin = isAdmin(user.role);
-  const mapRef = useRef<HTMLDivElement>(null);
+  const admin = isAdmin(user);
+  const mapRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [editMode, setEditMode] = useState(false);
-  const [showNumbersRef, setShowNumbersRef] = useState(false);
-  const [dragging, setDragging] = useState<string | null>(null);
+  const [editMode, setEditMode] = useState(true);
+  const [dragging, setDragging] = useState<{ id: string; paneId: string } | null>(
+    null,
+  );
   const [localBerths, setLocalBerths] = useState(berths);
   const [error, setError] = useState("");
 
@@ -52,26 +86,29 @@ export function CanalMap({ berths, members, user }: Props) {
     router.refresh();
   }
 
-  function pointerToPercent(e: React.PointerEvent) {
-    const rect = mapRef.current?.getBoundingClientRect();
+  function pointerToMap(e: React.PointerEvent, pane: Pane) {
+    const rect = mapRefs.current[pane.id]?.getBoundingClientRect();
     if (!rect) return { x: 50, y: 50 };
+    const localX = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    const x = pane.x0 + (localX / 100) * (pane.x1 - pane.x0);
     return {
-      x: ((e.clientX - rect.left) / rect.width) * 100,
-      y: ((e.clientY - rect.top) / rect.height) * 100,
+      x: Math.min(pane.x1 - 0.2, Math.max(pane.x0, x)),
+      y: Math.min(96, Math.max(4, y)),
     };
   }
 
-  function onPointerMove(e: React.PointerEvent) {
-    if (!dragging || !editMode) return;
-    const { x, y } = pointerToPercent(e);
+  function onPointerMove(e: React.PointerEvent, pane: Pane) {
+    if (!dragging || !editMode || dragging.paneId !== pane.id) return;
+    const { x, y } = pointerToMap(e, pane);
     setLocalBerths((prev) =>
-      prev.map((b) => (b.id === dragging ? { ...b, x, y } : b)),
+      prev.map((b) => (b.id === dragging.id ? { ...b, x, y } : b)),
     );
   }
 
   async function onPointerUp() {
     if (!dragging) return;
-    const berth = localBerths.find((b) => b.id === dragging);
+    const berth = localBerths.find((b) => b.id === dragging.id);
     setDragging(null);
     if (berth) await patchBerth(berth.id, { x: berth.x, y: berth.y });
   }
@@ -118,19 +155,13 @@ export function CanalMap({ berths, members, user }: Props) {
       <div>
         <div className="mb-3 flex flex-wrap items-center gap-2">
           <button
-            onClick={() => setShowNumbersRef((v) => !v)}
-            className={`rounded-full px-3 py-1.5 text-sm ${showNumbersRef ? "bg-navy text-sand" : "bg-white text-navy"}`}
+            onClick={() => setEditMode((v) => !v)}
+            className={`rounded-full px-3 py-1.5 text-sm ${editMode ? "bg-brass text-navy-deep" : "bg-white text-navy"}`}
           >
-            {showNumbersRef ? "Skjul referencenumre" : "Vis referencenumre"}
+            {editMode ? "Flytning slået til" : "Flyt pladser"}
           </button>
           {admin ? (
             <>
-              <button
-                onClick={() => setEditMode((v) => !v)}
-                className={`rounded-full px-3 py-1.5 text-sm ${editMode ? "bg-brass text-navy-deep" : "bg-white text-navy"}`}
-              >
-                {editMode ? "Flytning slået til" : "Flyt pladser"}
-              </button>
               <button
                 onClick={() => addBerth("norden")}
                 className="rounded-full bg-white px-3 py-1.5 text-sm"
@@ -147,59 +178,59 @@ export function CanalMap({ berths, members, user }: Props) {
           ) : null}
         </div>
 
-        <div
-          ref={mapRef}
-          className="relative overflow-hidden rounded-2xl border border-navy/10 bg-navy shadow-lg"
-          onPointerMove={onPointerMove}
-          onPointerUp={onPointerUp}
-          onPointerLeave={onPointerUp}
-        >
-          <img
-            src={
-              showNumbersRef
-                ? "/maps/kanal-numreret.jpg"
-                : "/maps/kanal-horizontal.jpg"
-            }
-            alt="Christianshavns Kanal, drejet så kanalen ligger vandret. Vest til venstre, øst til højre. Hele kanalen fra bolværket til øst for Torvegade."
-            className="block w-full select-none"
-            draggable={false}
-          />
-          <div className="pointer-events-none absolute top-2 left-3 rounded bg-navy/70 px-2 py-1 text-[11px] tracking-wide text-sand uppercase">
-            Vest
-          </div>
-          <div className="pointer-events-none absolute top-2 right-3 rounded bg-navy/70 px-2 py-1 text-[11px] tracking-wide text-sand uppercase">
-            Øst
-          </div>
-          <div className="pointer-events-none absolute top-2 left-1/2 -translate-x-1/2 rounded bg-navy/70 px-2 py-1 text-[11px] tracking-wide text-sand uppercase">
-            Torvegade
-          </div>
-
-          {localBerths.map((berth) => {
-            const taken = Boolean(berth.memberId);
-            const active = berth.id === selectedId;
+        <div className="space-y-8">
+          {PANES.map((pane) => {
             return (
-              <button
-                key={berth.id}
-                type="button"
-                onPointerDown={(e) => {
-                  if (editMode && admin) {
-                    e.currentTarget.setPointerCapture(e.pointerId);
-                    setDragging(berth.id);
-                  }
-                }}
-                onClick={() => setSelectedId(berth.id)}
-                style={{ left: `${berth.x}%`, top: `${berth.y}%` }}
-                className={`absolute flex h-6 min-w-6 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border px-1 text-[10px] font-semibold shadow-md transition ${
-                  active
-                    ? "z-20 scale-125 border-white bg-brass text-navy-deep"
-                    : taken
-                      ? "border-navy bg-navy text-sand hover:scale-110"
-                      : "border-navy/40 bg-white/90 text-navy hover:scale-110"
-                } ${editMode ? "cursor-grab" : "cursor-pointer"}`}
-                title={`Plads ${berth.number}${taken && memberById[berth.memberId!] ? " · " + memberById[berth.memberId!].boatName : " · ledig"}`}
-              >
-                {berth.number}
-              </button>
+              <section key={pane.id}>
+                <h2 className="font-serif mb-3 text-2xl text-navy">{pane.title}</h2>
+                <div
+                  ref={(el) => {
+                    mapRefs.current[pane.id] = el;
+                  }}
+                  className="relative overflow-hidden rounded-2xl border border-navy/10 bg-[#f3efe6] shadow-lg"
+                  onPointerMove={(e) => onPointerMove(e, pane)}
+                  onPointerUp={onPointerUp}
+                  onPointerLeave={onPointerUp}
+                >
+                  <img
+                    src={pane.src}
+                    alt={`Christianshavns Kanal ved ${pane.title}`}
+                    draggable={false}
+                    className="block w-full select-none"
+                  />
+                  {localBerths.filter((b) => inPane(b, pane)).map((berth) => {
+                    const taken = Boolean(berth.memberId);
+                    const active = berth.id === selectedId;
+                    return (
+                      <button
+                        key={berth.id}
+                        type="button"
+                        onPointerDown={(e) => {
+                          if (editMode) {
+                            e.currentTarget.setPointerCapture(e.pointerId);
+                            setDragging({ id: berth.id, paneId: pane.id });
+                          }
+                        }}
+                        onClick={() => setSelectedId(berth.id)}
+                        style={{
+                          left: `${toLocalX(berth.x, pane)}%`,
+                          top: `${berth.y}%`,
+                        }}
+                        className={`absolute flex h-7 min-w-7 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border px-1.5 text-xs font-semibold shadow-md transition ${
+                          active
+                            ? "z-20 scale-125 border-white bg-brass text-navy-deep"
+                            : taken
+                              ? "border-navy bg-navy text-sand hover:scale-110"
+                              : "border-navy/40 bg-white/90 text-navy hover:scale-110"
+                        } ${editMode ? "cursor-grab" : "cursor-pointer"}`}
+                        title={`Plads ${berth.number}${taken && memberById[berth.memberId!] ? " · " + memberById[berth.memberId!].boatName : " · ledig"}`}
+                      >
+                        {berth.number}
+                      </button>
+                    );
+                  })}
+                </div>
+              </section>
             );
           })}
         </div>
@@ -214,8 +245,8 @@ export function CanalMap({ berths, members, user }: Props) {
             Ledig
           </span>
           <span>
-            Officielle pladsnumre fra maillisten. Træk dem på plads med Flyt
-            pladser.
+            Officielle pladsnumre fra maillisten. Alle i bestyrelsen kan
+            trække dem på plads med Flyt pladser.
           </span>
         </div>
         {editMode ? (
@@ -227,7 +258,7 @@ export function CanalMap({ berths, members, user }: Props) {
         {error ? <p className="mt-2 text-sm text-red-700">{error}</p> : null}
       </div>
 
-      <aside className="paper-card h-fit rounded-2xl p-5">
+      <aside className="paper-card h-fit rounded-2xl p-5 lg:sticky lg:top-6">
         {selected ? (
           <div>
             <p className="text-xs tracking-[0.18em] text-brass-dark uppercase">
@@ -252,9 +283,11 @@ export function CanalMap({ berths, members, user }: Props) {
                   </div>
                 )}
                 <p className="font-serif text-xl text-navy">
-                  {selectedMember.boatName || "Uden bådnavn"}
+                  {selectedMember.boatName || selectedMember.name}
                 </p>
-                <p className="text-sm">{selectedMember.name}</p>
+                {selectedMember.boatName ? (
+                  <p className="text-sm">{selectedMember.name}</p>
+                ) : null}
                 <p className="mt-1 text-xs text-muted">
                   {MEMBERSHIP_LABELS[selectedMember.membershipType]}
                   {selectedMember.boatLengthMeters
@@ -298,8 +331,8 @@ export function CanalMap({ berths, members, user }: Props) {
             <h2 className="font-serif text-2xl text-navy">Bådepladser</h2>
             <p className="mt-3 text-sm leading-6 text-muted">
               Klik på et nummer for at se, hvilken båd der ligger på pladsen.
-              Numrene er et første udkast — formand og næstformand kan flytte
-              dem hen på de rigtige både.
+              Kortet er delt ved Torvegade. Alle i bestyrelsen kan flytte
+              numrene.
             </p>
             <dl className="mt-5 grid grid-cols-2 gap-3 text-sm">
               <div className="rounded-xl bg-canal-soft/60 p-3">

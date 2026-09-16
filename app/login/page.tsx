@@ -19,13 +19,6 @@ export default async function LoginPage() {
         <div className="grid w-full items-center gap-12 lg:grid-cols-2">
           <div className="text-sand">
             <Logo light href={null} />
-            <h1 className="font-serif mt-10 max-w-md text-5xl leading-tight">
-              Christianshavns Kanal, set fra bestyrelsen.
-            </h1>
-            <p className="mt-5 max-w-md text-sand/75">
-              Medlemmer, bådpladser og dokumenter for Bådklubben Bolværket —
-              stiftet 18. maj 1985.
-            </p>
           </div>
           <div className="paper-card w-full max-w-md rounded-2xl p-8">
             <h2 className="font-serif text-3xl text-navy">Log ind</h2>

@@ -17,7 +17,7 @@ const LINKS = [
 export function AppHeader({ user }: { user: SessionUser }) {
   const pathname = usePathname();
   const router = useRouter();
-  const admin = isAdmin(user.role);
+  const admin = isAdmin(user);
 
   async function logout() {
     await fetch("/api/auth/logout", { method: "POST" });
